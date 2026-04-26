@@ -1,0 +1,55 @@
+---
+const criteria = [
+  {
+    title: "Domain authority",
+    body: "How much weight a backlink from the directory carries in search. Measured against publicly available SEO indices.",
+  },
+  {
+    title: "Inbound traffic quality",
+    body: "Whether the visitors clicking through to listed firms are actually shopping for legal services — not casual researchers.",
+  },
+  {
+    title: "Editorial standards",
+    body: "How the directory vets the firms it lists. Peer-review processes and editorial selection rank above pay-to-play.",
+  },
+  {
+    title: "Profile experience",
+    body: "What the listed firm actually gets — the depth of profile, control over content, and how listings render to a prospective client.",
+  },
+  {
+    title: "Longevity",
+    body: "How long the directory has operated under stable ownership. Older platforms tend to compound trust signals over time.",
+  },
+];
+---
+
+<section class="border-t border-rule/70 px-6 py-16 sm:px-8 sm:py-20">
+  <div class="mx-auto max-w-3xl">
+    <div class="grid gap-8 sm:grid-cols-[140px_1fr] sm:gap-12">
+      <h2
+        class="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted"
+      >
+        Methodology
+      </h2>
+      <div>
+        <p class="font-serif text-2xl italic leading-snug text-ink sm:text-3xl">
+          How we ranked them.
+        </p>
+        <dl
+          class="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2"
+        >
+          {
+            criteria.map((c) => (
+              <div>
+                <dt class="font-serif text-lg text-ink">{c.title}</dt>
+                <dd class="mt-2 text-sm leading-relaxed text-ink-soft">
+                  {c.body}
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>

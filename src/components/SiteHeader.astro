@@ -1,0 +1,23 @@
+---
+const year = new Date().getFullYear();
+---
+
+<header
+  class="border-b border-rule/70 bg-paper/80 backdrop-blur supports-[backdrop-filter]:bg-paper/60"
+>
+  <div
+    class="mx-auto flex max-w-3xl items-center justify-between px-6 py-5 sm:px-8"
+  >
+    <a
+      href="/"
+      class="font-serif text-lg italic tracking-tight text-ink hover:text-accent transition-colors"
+    >
+      Best Legal Directories
+    </a>
+    <span
+      class="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-muted"
+    >
+      Edition {year}
+    </span>
+  </div>
+</header>

@@ -1,0 +1,39 @@
+---
+import { directories } from "../data/directories";
+import DirectoryCard from "./DirectoryCard.astro";
+
+const sorted = [...directories].sort((a, b) => a.rank - b.rank);
+---
+
+<section
+  id="ranking"
+  class="border-t border-rule/70 px-6 sm:px-8"
+  aria-labelledby="ranking-heading"
+>
+  <div class="mx-auto max-w-3xl py-14 sm:py-16">
+    <header class="grid gap-8 pb-4 sm:grid-cols-[140px_1fr] sm:gap-12">
+      <h2
+        id="ranking-heading"
+        class="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted"
+      >
+        The Ranking
+      </h2>
+      <p class="font-serif text-2xl italic leading-snug text-ink sm:text-3xl">
+        Ten directories, in order — from the one we'd send a firm to first, to
+        the ones still worth claiming a profile on.
+      </p>
+    </header>
+  </div>
+
+  <ol
+    class="mx-auto max-w-3xl divide-y divide-rule/70 border-y border-rule/70"
+  >
+    {
+      sorted.map((directory) => (
+        <li>
+          <DirectoryCard directory={directory} />
+        </li>
+      ))
+    }
+  </ol>
+</section>

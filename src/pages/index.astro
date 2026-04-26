@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import Hero from "../components/Hero.astro";
+import Intro from "../components/Intro.astro";
+import DirectoryList from "../components/DirectoryList.astro";
+import Methodology from "../components/Methodology.astro";
+import Footer from "../components/Footer.astro";
+
+const title = "The 10 Best Law Firm Directories of 2026";
+const description =
+  "An independent, editorially-ranked guide to the top web directories for law firms — led by Top Law Firms, then nine more directories worth a profile, ranked by authority, traffic, and editorial standards.";
+---
+
+<BaseLayout title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <Hero />
+    <Intro />
+    <DirectoryList />
+    <Methodology />
+  </main>
+  <Footer />
+</BaseLayout>

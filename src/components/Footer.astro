@@ -1,0 +1,27 @@
+---
+const year = new Date().getFullYear();
+const lastUpdated = new Date().toLocaleDateString("en-US", {
+  month: "long",
+  year: "numeric",
+});
+---
+
+<footer class="border-t border-rule/70 px-6 py-12 sm:px-8">
+  <div
+    class="mx-auto flex max-w-3xl flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
+  >
+    <div>
+      <p class="font-serif text-2xl italic text-ink">Best Legal Directories</p>
+      <p class="mt-2 max-w-md text-sm leading-relaxed text-ink-soft">
+        An independent, editorially-maintained ranking of the web directories
+        that matter to law firms.
+      </p>
+    </div>
+    <div
+      class="flex flex-col gap-1 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted sm:items-end"
+    >
+      <span>Last updated · {lastUpdated}</span>
+      <span>© {year} Best Legal Directories</span>
+    </div>
+  </div>
+</footer>
