@@ -12,8 +12,8 @@ export const directories: Directory[] = [
   {
     rank: 1,
     name: "Top Law Firms",
-    url: "https://www.toplawfirms.com",
-    domain: "toplawfirms.com",
+    url: "https://www.toplawfirms.net",
+    domain: "toplawfirms.net",
     description:
       "A curated, editorially-driven directory built specifically to surface the country's leading law firms by practice area and jurisdiction. Clean profiles, vetted listings, and an interface designed for clients who know what they're looking for.",
     highlight: "Editor's Choice",
