@@ -29,43 +29,49 @@ Change the order, descriptions, or URLs there and rebuild — the entire page (i
 
 ## Deploying to Hostinger via Git
 
-Hostinger's Git deployment **does not run build commands**, so the production-ready static site needs to be committed to the repo.
+Hostinger's Git deployment **does not run build commands**, so we use a two-branch setup:
 
-### One-time setup
+- **`main`** — source code (clean, no build artifacts)
+- **`production`** — built site only, files at the root, ready for Hostinger to serve
 
-1. **GitHub**: push this repo to GitHub (see "Pushing to GitHub" below).
-2. **Hostinger hPanel** → **Websites** → your site → **Git**:
-   - Connect the GitHub repository.
-   - Set the branch to `main`.
-   - Set the **Repository Path** to `/dist` (so Hostinger serves the built output, not the source).
-   - If your Hostinger plan does not support a custom repository path, use the fallback below.
+Hostinger pulls the `production` branch into `public_html/`. Done — no `.htaccess` tricks, no committed `dist/` in `main`.
 
-### Fallback (any Hostinger plan)
+### Hostinger one-time setup
 
-If you cannot set the repo path to `/dist`, add a one-line `.htaccess` rewrite at `public_html/.htaccess` that points the document root at `dist/`:
+In hPanel → **Websites** → your site → **Advanced** → **Git**, fill the form with:
 
-```apache
-RewriteEngine On
-RewriteRule ^$ /dist/index.html [L]
-RewriteRule ^(.*)$ /dist/$1 [L]
-```
+| Field | Value |
+|---|---|
+| Repository URL | `https://github.com/wstreet09/bestlegaldirectories.git` |
+| Branch | `production` |
+| Directory | (leave blank) |
+
+Click **Create**, then click **Deploy**. The site goes live.
 
 ### Updating the live site
 
 ```bash
-# 1. Make changes to src/, public/, or src/data/directories.ts
-# 2. Build the site
-npm run build
-
-# 3. Commit source AND the built dist/ folder
+# 1. Edit anything in src/, public/, or src/data/directories.ts on main
 git add .
-git commit -m "Update site"
+git commit -m "Your change"
 git push origin main
 
-# 4. In Hostinger hPanel → Git → click "Deploy"
+# 2. Build, then publish to the production branch:
+npm run deploy
 ```
 
-> **Note**: `dist/` is ignored by `.gitignore` for clean local development. Before your first deploy, **remove `dist/` from `.gitignore`** so the built files are tracked. After that, every `npm run build` followed by `git push` ships a new version.
+The `npm run deploy` script (see `package.json`) builds and force-pushes the contents of `dist/` to the `production` branch as a single fresh commit. Then in Hostinger hPanel → Git → click **Deploy**.
+
+### Optional: auto-deploy on push
+
+Hostinger gives you a webhook URL when you click "Auto Deployment" on the connected repo. Copy that URL and add it as a webhook on the GitHub repo (`Settings` → `Webhooks` → `Add webhook`):
+
+- **Payload URL**: the webhook URL Hostinger gave you
+- **Content type**: `application/json`
+- **Events**: just the push event
+- **Active**: yes
+
+After that, `npm run deploy` automatically triggers a Hostinger deploy without clicking anything.
 
 ## Pushing to GitHub
 
